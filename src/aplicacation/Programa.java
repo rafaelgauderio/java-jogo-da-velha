@@ -15,7 +15,7 @@ public class Programa {
 
 		boolean win = false;
 		int move = 1;
-		char signal;
+		char signal;  
 		int line = 0, column = 0;
 
 		while (win != true) {
@@ -54,32 +54,62 @@ public class Programa {
 
 				}
 			}
-			//matrix start line =0 and column=0
-			
+			// matrix start line =0 and column=0
+
 			line--;
 			column--;
-			
-			if (hash [line][column] =='X' || hash [line][column] =='O') {
+
+			if (hash[line][column] == 'X' || hash[line][column] == 'O') {
 				System.out.println("Position already use, try again!");
-			} else { //valid move
-				hash [line][column] = signal;
+			} else { // valid move
+				hash[line][column] = signal;
 				move++;
 			}
-			
-			//print board
-			
-			for (int i=0; i < hash.length ; i++) {
-				for ( int j=0; j<hash[i].length; j++) {
+
+			// print board
+
+			for (int i = 0; i < hash.length; i++) {
+				for (int j = 0; j < hash[i].length; j++) {
 					System.out.print(hash[i][j] + " | ");
 				}
 				System.out.println();
 			}
-			
-			//check if there is a winner
-			
-			
+
+			// check if there is a winner
+
+			if ((hash[0][0] == 'X' && hash[0][1] == 'X' && hash[0][2] == 'X') || // line 0
+					(hash[1][0] == 'X' && hash[1][1] == 'X' && hash[1][2] == 'X') || // line 1
+					(hash[2][0] == 'X' && hash[2][1] == 'X' && hash[2][2] == 'X') || // line 2
+					(hash[0][0] == 'X' && hash[1][0] == 'X' && hash[2][0] == 'X') || // column 0
+					(hash[0][1] == 'X' && hash[1][1] == 'X' && hash[2][1] == 'X') || // column 1
+					(hash[0][2] == 'X' && hash[1][2] == 'X' && hash[2][2] == 'X') || // column 2
+					(hash[0][0] == 'X' && hash[1][1] == 'X' && hash[2][2] == 'X') // diagonal
+			) {
+				win = true;
+				System.out.println("CONGRATULATIONS, PLAYER ONE HAVE WIN!!!");
+
+			} else if ((hash[0][0] == 'O' && hash[0][1] == 'O' && hash[0][2] == 'O') || // line 0
+					(hash[1][0] == 'O' && hash[1][1] == 'O' && hash[1][2] == 'O') || // line 1
+					(hash[2][0] == 'O' && hash[2][1] == 'O' && hash[2][2] == 'O') || // line 2
+					(hash[0][0] == 'O' && hash[1][0] == 'O' && hash[2][0] == 'O') || // column 0
+					(hash[0][1] == 'O' && hash[1][1] == 'O' && hash[2][1] == 'O') || // column 1
+					(hash[0][2] == 'O' && hash[1][2] == 'O' && hash[2][2] == 'O') || // column 2
+					(hash[0][0] == 'O' && hash[1][1] == 'O' && hash[2][2] == 'O') // diagonal
+			) {
+
+				win = true;
+				System.out.println("CONGRATULATIONS, PLAYER TWO HAVE WIN!!!");
+			}
+
+			else if (move >= 10) // DRAWM
+			{
+				win = true;
+				System.out.println("MATCH DRAWN, TRY AGAIN!");
+
+			}
+
 		}
-		
+
 		input.close();
 
 	}
